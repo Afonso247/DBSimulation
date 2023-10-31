@@ -4,27 +4,30 @@
       <Message :msg="msg" :tipo="msgtipo" v-show="msg" />
     </transition>
     <div>
+
+      <div class="backG">
+
       <div class="group-table-heading">
         <div>Nome do Grupo:</div>
         <div>Cor:</div>
         <div>Local:</div>
       </div>
     </div>
+    
     <div class="group-table-rows">
       <div class="group-table-row" v-for="group in groups" :key="group.id">
         <div>{{ group.nome }}</div>
-        <div>{{ group.arma }}</div>
-        <div>{{ group.elemento }}</div>
+        <div>{{ group.cor }}</div>
         <div>{{ group.local }}</div>
-        <div>{{ group.ascensao }}</div>
         <div>
           <button class="confirm-btn" @click="teste()">Editar</button>
-          <button class="cancel-btn" @click="deleteGrupo(group.id)">Remover</button>
+          <button class="confirm-btn" @click="deleteGrupo(group.id)">Apagar</button>
         </div>
       </div>
     </div>
   </div>
   <Modal @madeEdit="getPersonagens(), editShowMsg(msgconfirm, group_id), fecharModal()" :charEdit="charEdit" v-if="mostrarModal" @close="fecharModal"></Modal>
+</div>
 </template>
 
 <script>
@@ -77,36 +80,6 @@ export default {
 
       this.getGrupos()
     },
-    // async updatePersonagem(e, id) {
-    //   const option = e.target.value
-
-    //   const dataJSON = JSON.stringify({ role: option })
-
-    //   const req = await fetch(`http://localhost:3000/personagens/${id}`, {
-    //     method: 'PATCH',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: dataJSON
-    //   })
-
-    //   const res = await req.json()
-
-    //   console.log(res)
-    // },
-    // async abrirModal(id) {
-    //   const req = await fetch(`http://localhost:3000/personagens/${id}`)
-
-    //   const res = await req.json()
-
-    //   this.charEdit = res
-    //   this.char_id = res.id
-
-    //   this.mostrarModal = true;
-    // },
-    // fecharModal() {
-    //   this.char_name = null;
-
-    //   this.mostrarModal = false;
-    // },
     async teste() {
       console.log("Testando...")
     },
@@ -140,7 +113,8 @@ export default {
 <style scoped>
 .group-table {
   max-width: 1200px;
-  margin: 0 auto;
+  margin:  auto;
+  
 }
 
 .group-table-heading,
@@ -155,10 +129,15 @@ export default {
   font-weight: bold;
   padding: 12px;
   border-bottom: 3px solid #f08cae;
+  border-radius: 20px;
+  
+  
+  
 }
 
 .group-table-heading div {
   color: #f08cae;
+  
 }
 
 .group-table-row div {
@@ -167,26 +146,28 @@ export default {
 
 .group-table-heading div,
 .group-table-row div {
-  width: 16%;
+  width: 25%;
   /* width: 13%; */
+  
 }
 
 .group-table-rows,
 .group-table-row,
 .group-table-row div {
-  background-color: #222;
+  background-color: #111;
 }
 
 .group-table-row {
   width: 100%;
   padding: 12px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 2px solid #485696;
+  border-radius: 20px;
 }
 
 select {
   padding: 7px 4px;
   margin-right: 12px;
-  background-color: #333;
+  background-color: #222;
   color: #fff;
 }
 .confirm-btn {
@@ -194,4 +175,10 @@ select {
   font-size: 14px;
   margin-right: 10px;
 }
+.cancel-btn{
+  color:#f08cae ;
+  background-color:#485696 ;
+}
+
+
 </style>
